@@ -42,7 +42,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(max_length=255, unique=True, verbose_name=_('email'), help_text=_('Email'))
     name = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('name'), help_text=_('Username'))
-    telefone = models.CharField(max_length=20, blank=True, null=True, verbose_name=_('telefone'), help_text=_('Telefone'))
+    telefone = models.CharField(max_length=20, blank=True, null=True, verbose_name=_('telefone'))
+    cpf = models.CharField(max_length=14, unique=True, blank=True, null=True, verbose_name=_('cpf'), help_text=_('CPF'))
     is_active = models.BooleanField(
         default=True, verbose_name=_('Usuário está ativo'), help_text=_('Indica que este usuário está ativo.')
     )
