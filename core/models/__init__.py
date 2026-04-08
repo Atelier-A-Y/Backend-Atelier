@@ -1,2 +1,2 @@
 from .user import User
-from .compra import Compras
+from .compra import Compra
