@@ -12,11 +12,12 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
-from core.views import UserRegistrationView, UserViewSet
+from core.views import UserRegistrationView, UserViewSet, VendaViewSet
 
 router = DefaultRouter()
 
 router.register(r'usuarios', UserViewSet, basename='usuarios')
+router.register(r'vendas', VendaViewSet, basename='vendas')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
