@@ -18,6 +18,7 @@ router = DefaultRouter()
 
 router.register(r'usuarios', UserViewSet, basename='usuarios')
 router.register(r'roupas', RoupaViewSet, basename='roupas')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # OpenAPI 3
