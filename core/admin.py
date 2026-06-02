@@ -42,6 +42,8 @@ class UserAdmin(BaseUserAdmin):
                     'password1',
                     'password2',
                     'name',
+                    'telefone',
+                    'cpf',
                     'is_active',
                     'is_staff',
                     'is_superuser',
