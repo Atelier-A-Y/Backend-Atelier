@@ -42,6 +42,8 @@ class UserAdmin(BaseUserAdmin):
                     'password1',
                     'password2',
                     'name',
+                    'telefone',
+                    'cpf',
                     'is_active',
                     'is_staff',
                     'is_superuser',
@@ -52,3 +54,4 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(models.User, UserAdmin)
+admin.site.register(models.Roupa)
