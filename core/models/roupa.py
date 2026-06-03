@@ -1,5 +1,7 @@
 from django.db import models
 
+from uploader.models import Image
+
 
 class Roupa(models.Model):
     nome = models.CharField(max_length=100)
@@ -7,6 +9,14 @@ class Roupa(models.Model):
     cor = models.CharField(max_length=50, blank=True, null=True)
     preco = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     descricao = models.TextField(blank=True, null=True)
+    foto = models.ForeignKey(
+        Image,
+        related_name='+',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        default=None,
+    )
 
     def __str__(self):
         return self.nome

@@ -1,9 +1,21 @@
 from rest_framework.viewsets import ModelViewSet
 
 from core.models import Roupa
-from core.serializers import RoupaSerializer
+from core.serializers.roupa import (
+    RoupaSerializer,
+    RoupaCreateSerializer,
+    RoupaRetrieveSerializer,
+)
 
 
 class RoupaViewSet(ModelViewSet):
     queryset = Roupa.objects.all()
-    serializer_class = RoupaSerializer
+
+    def get_serializer_class(self):
+        if self.action == "retrieve":
+            return RoupaRetrieveSerializer
+
+        if self.action in ["create", "update", "partial_update"]:
+            return RoupaCreateSerializer
+
+        return RoupaSerializer
