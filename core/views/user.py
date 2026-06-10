@@ -38,25 +38,17 @@ class UserViewSet(ModelViewSet):
             user = User.objects.get(email=email)
 
             if user.check_password(password):
-                return Response(
-                    {'message': 'Login OK'},
-                    status=status.HTTP_200_OK
-                )
+                return Response({'message': 'Login OK'}, status=status.HTTP_200_OK)
             else:
-                return Response(
-                    {'error': 'Senha incorreta'},
-                    status=status.HTTP_400_BAD_REQUEST
-                )
+                return Response({'error': 'Senha incorreta'}, status=status.HTTP_400_BAD_REQUEST)
 
         except User.DoesNotExist:
-            return Response(
-                {'error': 'Usuário não existe'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            return Response({'error': 'Usuário não existe'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserRegistrationView(CreateAPIView):
     """Endpoint para registro de novos usuários."""
+
     queryset = User.objects.all()
     serializer_class = UserRegistrationSerializer
     permission_classes = [AllowAny]
