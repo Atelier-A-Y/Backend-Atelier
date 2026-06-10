@@ -8,8 +8,9 @@ from dotenv import load_dotenv
 # Carrega as variáveis de ambiente do arquivo .env
 load_dotenv()
 
+print("ARQUIVO .ENV CARREGADO")
 print("MODE =", os.getenv("MODE"))
-print("CLOUDINARY_URL =", os.getenv("CLOUDINARY_URL"))
+print("CLOUDINARY_CLOUD_NAME =", os.getenv("CLOUDINARY_CLOUD_NAME"))
 
 # Define o modo de execução da aplicação
 MODE = os.getenv('MODE')
