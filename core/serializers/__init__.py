@@ -4,3 +4,5 @@ from .continente import ContinenteSerializer
 from .categoria import CategoriaSerializer
 from .compra import CompraSerializer
 from .venda import VendaSerializer
+from .tipoPagamento import TipoPagamentoSerializer
+

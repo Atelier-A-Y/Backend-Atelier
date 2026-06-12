@@ -4,3 +4,4 @@ from .continente import ContinenteViewSet
 from .categoria import CategoriaViewSet
 from .compra import CompraViewSet
 from .venda import VendaViewSet
+from .tipoPagamento import TipoPagamentoViewSet

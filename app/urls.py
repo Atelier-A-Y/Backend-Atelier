@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import include, path
+from core.models import TipoPagamento
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularRedocView,
@@ -17,6 +18,7 @@ from core.views import (
     CompraViewSet,
     ContinenteViewSet,
     RoupaViewSet,
+    TipoPagamentoViewSet,
     UserRegistrationView,
     UserViewSet,
     VendaViewSet,
@@ -29,6 +31,7 @@ router.register(r'compras', CompraViewSet, basename='compras')
 router.register(r'continentes', ContinenteViewSet, basename='continentes')
 router.register(r'usuarios', UserViewSet, basename='usuarios')
 router.register(r'roupas', RoupaViewSet, basename='roupas')
+router.register(r'tipoPagamento', TipoPagamentoViewSet, basename='tipoPagamento')
 router.register(r'vendas', VendaViewSet, basename='vendas')
 
 urlpatterns = [
