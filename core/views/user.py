@@ -20,14 +20,22 @@ class UserViewSet(ModelViewSet):
         description='Retorna os dados do usuário autenticado.',
         responses={200: UserSerializer, 401: None},
     )
-    @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])
+    @action(
+    detail=False,
+    methods=['get', 'patch'],
+    permission_classes=[IsAuthenticated]
+    )
     def me(self, request):
-        """Retorna os dados do usuário autenticado."""
 
-        user = request.user
-        serializer = UserSerializer(user)
+        if request.method == 'GET':
+            serializer = UserSerializer(request.user)
+        return Response(serializer.data)
 
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        serializer = UserSerializer(
+            request.user,
+            data=request.data,
+            partial=True
+        )
 
     @action(detail=False, methods=['post'], permission_classes=[AllowAny])
     def login(self, request):

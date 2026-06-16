@@ -13,10 +13,12 @@ class RoupaRetrieveSerializer(ModelSerializer):
         fields = '__all__'
         depth = 1
 
+
 class RoupaSerializer(ModelSerializer):
     class Meta:
         model = Roupa
         fields = '__all__'
+
 
 class RoupaCreateSerializer(ModelSerializer):
     foto_attachment_key = SlugRelatedField(

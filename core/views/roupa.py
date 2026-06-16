@@ -2,9 +2,9 @@ from rest_framework.viewsets import ModelViewSet
 
 from core.models import Roupa
 from core.serializers.roupa import (
-    RoupaSerializer,
     RoupaCreateSerializer,
     RoupaRetrieveSerializer,
+    RoupaSerializer,
 )
 
 
