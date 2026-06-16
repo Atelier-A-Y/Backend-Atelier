@@ -17,6 +17,7 @@ from core.views import (
     CompraViewSet,
     ContinenteViewSet,
     RoupaViewSet,
+    TamanhoViewSet,
     UserRegistrationView,
     UserViewSet,
     VendaViewSet,
@@ -27,8 +28,9 @@ router = DefaultRouter()
 router.register(r'categorias', CategoriaViewSet, basename='categorias')
 router.register(r'compras', CompraViewSet, basename='compras')
 router.register(r'continentes', ContinenteViewSet, basename='continentes')
-router.register(r'usuarios', UserViewSet, basename='usuarios')
 router.register(r'roupas', RoupaViewSet, basename='roupas')
+router.register(r'tamanhos', TamanhoViewSet, basename='tamanhos')
+router.register(r'usuarios', UserViewSet, basename='usuarios')
 router.register(r'vendas', VendaViewSet, basename='vendas')
 
 urlpatterns = [
