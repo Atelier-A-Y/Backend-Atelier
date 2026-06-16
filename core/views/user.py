@@ -28,6 +28,7 @@ class UserViewSet(ModelViewSet):
         new_password = request.data.get('new_password')
 
         if not user.check_password(current_password):
+
             return Response({'error': 'Senha atual incorreta'}, status=status.HTTP_400_BAD_REQUEST)
 
         user.set_password(new_password)
