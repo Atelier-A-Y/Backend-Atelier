@@ -59,6 +59,7 @@ class UserViewSet(ModelViewSet):
             user = User.objects.get(email=email)
 
             if user.check_password(password):
+
                 return Response({'message': 'Login OK'}, status=status.HTTP_200_OK)
             else:
                 return Response({'error': 'Senha incorreta'}, status=status.HTTP_400_BAD_REQUEST)
