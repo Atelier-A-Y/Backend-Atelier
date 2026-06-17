@@ -12,7 +12,7 @@ class RoupaViewSet(ModelViewSet):
     queryset = Roupa.objects.all()
 
     def get_serializer_class(self):
-        if self.action == "retrieve":
+        if self.action in ["retrieve", "list"]:
             return RoupaRetrieveSerializer
 
         if self.action in ["create", "update", "partial_update"]:
