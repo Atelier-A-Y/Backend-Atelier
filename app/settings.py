@@ -8,6 +8,13 @@ from dotenv import load_dotenv
 # Carrega as variáveis de ambiente do arquivo .env
 load_dotenv()
 
+MODE = os.getenv('MODE')
+
+if MODE == 'DEVELOPMENT':
+    print("ARQUIVO .ENV CARREGADO")
+    print("MODE =", os.getenv("MODE"))
+    print("CLOUDINARY_CLOUD_NAME =", os.getenv("CLOUDINARY_CLOUD_NAME"))
+
 # Define o modo de execução da aplicação
 MODE = os.getenv('MODE')
 
@@ -16,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Segurança e configuração básica
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure')
-DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+DEBUG = os.getenv('DEBUG', 'False')
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000',
@@ -159,3 +166,6 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
+# Exibe as configurações principais para verificação
+if MODE == 'DEVELOPMENT':
+    print(f'{MODE = } \n{MEDIA_URL = } \n{DATABASES = }')
