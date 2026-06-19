@@ -47,4 +47,5 @@ urlpatterns = [
     path('api/', include(router.urls)),
 ]
 
+
 urlpatterns += static(settings.MEDIA_ENDPOINT, document_root=settings.MEDIA_ROOT)
