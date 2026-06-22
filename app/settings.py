@@ -28,6 +28,7 @@ ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000',
     'http://localhost:8000',
+    'https://backend-atelier.class.fabricadesoftware.ifc.edu.br'
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 
