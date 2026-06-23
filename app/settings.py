@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Segurança e configuração básica
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure')
-DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+DEBUG = os.getenv('DEBUG', 'False')
 ALLOWED_HOSTS = ['*', 'backend-atelier.class.fabricadesoftware.ifc.edu.br', 'paginahome-mu.vercel.app']
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000',
