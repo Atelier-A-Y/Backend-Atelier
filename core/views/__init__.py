@@ -6,4 +6,6 @@ from .compra import CompraViewSet
 from .venda import VendaViewSet
 from .tamanho import TamanhoViewSet
 from .tipoPagamento import TipoPagamentoViewSet
+from .fornecedor import FornecedorViewSet, CompraFornecedorViewSet
+
 
