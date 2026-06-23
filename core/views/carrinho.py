@@ -1,9 +1,9 @@
 from rest_framework.viewsets import ModelViewSet
 
-from core.models import Carinho
-from core.serializers import CarinhoSerializer
+from core.models import Carrinho
+from core.serializers import CarrinhoSerializer
 
 
-class CarinhoViewSet(ModelViewSet):
-    queryset = Carinho.objects.all()
-    serializer_class = CarinhoSerializer
+class CarrinhoViewSet(ModelViewSet):
+    queryset = Carrinho.objects.all()
+    serializer_class = CarrinhoSerializer
