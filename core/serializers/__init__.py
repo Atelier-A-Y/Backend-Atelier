@@ -6,5 +6,6 @@ from .compra import CompraSerializer
 from .venda import VendaSerializer
 from .tamanho import TamanhoSerializer
 from .tipoPagamento import TipoPagamentoSerializer
+from .favorito import FavoritoSerializer
 
 
