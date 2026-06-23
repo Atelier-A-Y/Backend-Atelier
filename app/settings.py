@@ -24,11 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Segurança e configuração básica
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure')
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
-ALLOWED_HOSTS = ['*', 'backend-atelier.class.fabricadesoftware.ifc.edu.br']
+ALLOWED_HOSTS = ['*', 'backend-atelier.class.fabricadesoftware.ifc.edu.br', 'paginahome-mu.vercel.app']
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000',
     'http://localhost:8000',
-    'https://backend-atelier.class.fabricadesoftware.ifc.edu.br'
+    'https://backend-atelier.class.fabricadesoftware.ifc.edu.br',
+    'https://paginahome-mu.vercel.app'
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 
