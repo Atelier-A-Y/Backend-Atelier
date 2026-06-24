@@ -35,7 +35,6 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'https://backend-atelier.class.fabricadesoftware.ifc.edu.br',
     'https://paginahome-mu.vercel.app'
-    'https://.fabricadesoftware.ifc.edu.br'
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 
