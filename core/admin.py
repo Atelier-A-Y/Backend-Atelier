@@ -6,18 +6,22 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 
+from core.models import (
+    Favorito,
+    User,
+)
 from core import models
-from .models import Compra
 
-
+@admin.register(User)
 class UserAdmin(BaseUserAdmin):
     """Define the admin pages for users."""
 
     ordering = ['id']
     list_display = ['email', 'name']
+    search_fields = ['email', 'name', 'groups__name']
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal Info'), {'fields': ('name',)}),
+        (_('Personal Info'), {'fields': ('name', 'foto', 'tipo_usuario')}),
         (
             _('Permissions'),
             {
@@ -43,8 +47,6 @@ class UserAdmin(BaseUserAdmin):
                     'password1',
                     'password2',
                     'name',
-                    'telefone',
-                    'cpf',
                     'is_active',
                     'is_staff',
                     'is_superuser',
@@ -52,6 +54,16 @@ class UserAdmin(BaseUserAdmin):
             },
         ),
     )
+
+
+@admin.register(Favorito)
+class FavoritoAdmin(admin.ModelAdmin):
+    list_display = ('usuario', 'livro', 'nota', 'data_atualizacao')
+    search_fields = ('usuario__email', 'livro__titulo', 'comentario')
+    list_filter = ('nota', 'data_atualizacao')
+    ordering = ('-data_atualizacao',)
+    list_per_page = 25
+    readonly_fields = ('data_atualizacao',)
 
 
 class CompraAdmin(admin.ModelAdmin):
