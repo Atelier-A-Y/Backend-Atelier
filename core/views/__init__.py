@@ -7,5 +7,7 @@ from .venda import VendaViewSet
 from .tamanho import TamanhoViewSet
 from .tipoPagamento import TipoPagamentoViewSet
 from .fornecedor import FornecedorViewSet, CompraFornecedorViewSet
-
+from .estoque import EstoqueViewSet
+from .carrinho import CarrinhoViewSet
+from .favorito import FavoritoViewSet
 
