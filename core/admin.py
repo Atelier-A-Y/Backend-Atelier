@@ -43,6 +43,7 @@ admin.site.register(models.Compra)
 admin.site.register(models.Venda)
 admin.site.register(models.Tamanho)
 admin.site.register(models.TipoPagamento)
+admin.site.register(models.Estoque)
+admin.site.register(models.MovimentacaoEstoque)
 admin.site.register(models.Carrinho)
 admin.site.register(models.Favorito)
-

@@ -17,6 +17,7 @@ from core.views import (
     CategoriaViewSet,
     CompraViewSet,
     ContinenteViewSet,
+    EstoqueViewSet,
     FavoritoViewSet,
     RoupaViewSet,
     TamanhoViewSet,
@@ -36,6 +37,7 @@ router.register(r'tamanhos', TamanhoViewSet, basename='tamanhos')
 router.register(r'usuarios', UserViewSet, basename='usuarios')
 router.register(r'tipoPagamento', TipoPagamentoViewSet, basename='tipoPagamento')
 router.register(r'vendas', VendaViewSet, basename='vendas')
+router.register(r'estoque', EstoqueViewSet, basename='estoque')
 router.register(r'carinhos', CarrinhoViewSet, basename='carinhos')
 router.register(r'favoritos', FavoritoViewSet, basename='favoritos')
 

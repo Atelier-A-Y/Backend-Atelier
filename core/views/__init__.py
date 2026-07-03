@@ -6,7 +6,7 @@ from .compra import CompraViewSet
 from .venda import VendaViewSet
 from .tamanho import TamanhoViewSet
 from .tipoPagamento import TipoPagamentoViewSet
+from .estoque import EstoqueViewSet
 from .carrinho import CarrinhoViewSet
 from .favorito import FavoritoViewSet
-
 
