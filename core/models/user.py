@@ -10,9 +10,6 @@ from django.contrib.auth.models import (
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from .compra import Compra
-from .venda import Venda
-
 
 class UserManager(BaseUserManager):
     """Manager for users."""
@@ -47,8 +44,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('name'), help_text=_('Username'))
     telefone = models.CharField(max_length=20, blank=True, null=True, verbose_name=_('telefone'))
     cpf = models.CharField(max_length=14, unique=True, blank=True, null=True, verbose_name=_('cpf'), help_text=_('CPF'))
-    venda = models.ForeignKey(Venda, on_delete=models.SET_NULL, blank=True, null=True)
-    compra = models.ForeignKey(Compra, on_delete=models.SET_NULL, blank=True, null=True)
     is_active = models.BooleanField(
         default=True, verbose_name=_('Usuário está ativo'), help_text=_('Indica que este usuário está ativo.')
     )

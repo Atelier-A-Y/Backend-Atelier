@@ -17,6 +17,7 @@ from core.views import (
     CategoriaViewSet,
     CompraViewSet,
     ContinenteViewSet,
+    FavoritoViewSet,
     RoupaViewSet,
     TamanhoViewSet,
     TipoPagamentoViewSet,
@@ -36,6 +37,9 @@ router.register(r'usuarios', UserViewSet, basename='usuarios')
 router.register(r'tipoPagamento', TipoPagamentoViewSet, basename='tipoPagamento')
 router.register(r'vendas', VendaViewSet, basename='vendas')
 router.register(r'carinhos', CarrinhoViewSet, basename='carinhos')
+router.register(r'favoritos', FavoritoViewSet, basename='favoritos')
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # OpenAPI 3
