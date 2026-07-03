@@ -8,5 +8,6 @@ class Compra(models.Model):
     tipoPagamento = models.ForeignKey(TipoPagamento, on_delete=models.SET_NULL, blank=True, null=True)
     user = models.ForeignKey("core.User", on_delete=models.CASCADE, related_name="compras", blank=True, null=True)
 
-    def __str__(self):
-        return f'Compra - {self.id} '
+
+def __str__(self):
+    return f'Compra - {self.id} '
