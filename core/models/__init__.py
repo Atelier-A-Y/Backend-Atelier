@@ -6,6 +6,7 @@ from .compra import Compra
 from .venda import Venda
 from .tamanho import Tamanho
 from .tipoPagamento import TipoPagamento 
+from .fornecedor import Fornecedor, CompraFornecedor, ItemCompraFornecedor
 from .estoque import Estoque, MovimentacaoEstoque
 from .carrinho import Carrinho
 from .favorito import Favorito
