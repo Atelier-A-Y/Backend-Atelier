@@ -7,3 +7,5 @@ from .venda import Venda
 from .tamanho import Tamanho
 from .tipoPagamento import TipoPagamento 
 from .estoque import Estoque, MovimentacaoEstoque
+from .carrinho import Carrinho
+from .favorito import Favorito

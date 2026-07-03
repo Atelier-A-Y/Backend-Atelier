@@ -7,3 +7,4 @@ class CompraSerializer(ModelSerializer):
     class Meta:
         model = Compra
         fields = '__all__'
+        read_only_fields = ("user",)

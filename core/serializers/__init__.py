@@ -7,5 +7,7 @@ from .venda import VendaSerializer
 from .tamanho import TamanhoSerializer
 from .tipoPagamento import TipoPagamentoSerializer
 from .estoque import EstoqueSerializer
+from .carrinho import CarrinhoSerializer
+from .favorito import FavoritoSerializer
 
 
