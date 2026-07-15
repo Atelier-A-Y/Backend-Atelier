@@ -1,8 +1,9 @@
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from core.models import Roupa, Carrinho, ItemCarrinho
+from rest_framework.viewsets import ModelViewSet
+
+from core.models import Carrinho, ItemCarrinho, Roupa
 from core.serializers.roupa import (
     RoupaCreateSerializer,
     RoupaRetrieveSerializer,

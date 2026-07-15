@@ -1,17 +1,15 @@
-from rest_framework.viewsets import ViewSet
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
+
+from django.db import models
 
 
-class CarrinhoViewSet(ViewSet):
-    permission_classes = [IsAuthenticated]
+class Carrinho(models.Model):
+    usuario = models.ForeignKey('User', on_delete=models.CASCADE, related_name='carrinhos')
+    roupa = models.ForeignKey('Roupa', on_delete=models.CASCADE, related_name='carrinhos')
+    quantidade = models.PositiveIntegerField(default=1)
 
-    def list(self, request):
+    def __str__(self):
+        return f'{self.usuario} - {self.roupa} ({self.quantidade})'
 
-        carrinho, _ = Carrinho.objects.get_or_create(usuario=request.user)
-
-        itens = ItemCarrinho.objects.filter(carrinho=carrinho)
-
-        serializer = ItemCarrinhoSerializer(itens, many=True)
-
-        return Response(serializer.data)
+    class Meta:
+        verbose_name_plural = 'Carrinhos'
+        constraints = [models.UniqueConstraint(fields=['usuario', 'roupa'], name='unique_roupa_usuario')]

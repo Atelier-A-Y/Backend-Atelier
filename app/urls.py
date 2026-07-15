@@ -14,14 +14,40 @@ from rest_framework_simplejwt.views import (
    TokenVerifyView,
 )
 
-from core.views import RoupaViewSet, UserRegistrationView, UserViewSet
+from core.views import (
+   CarrinhoViewSet,
+   CategoriaViewSet,
+   CompraFornecedorViewSet,
+   CompraViewSet,
+   ContinenteViewSet,
+   EstoqueViewSet,
+   FavoritoViewSet,
+   FornecedorViewSet,
+   RoupaViewSet,
+   TamanhoViewSet,
+   TipoPagamentoViewSet,
+   UserRegistrationView,
+   UserViewSet,
+   VendaViewSet,
+)
 from uploader.router import router as uploader_router
 
 router = DefaultRouter()
 
-
 router.register(r'usuarios', UserViewSet, basename='usuarios')
 router.register(r'roupas', RoupaViewSet, basename='roupas')
+router.register(r'tamanhos', TamanhoViewSet, basename='tamanhos')
+router.register(r'usuarios', UserViewSet, basename='usuarios')
+router.register(r'tipoPagamento', TipoPagamentoViewSet, basename='tipoPagamento')
+router.register(r'vendas', VendaViewSet, basename='vendas')
+router.register(r'fornecedores', FornecedorViewSet, basename='fornecedores')
+router.register(r'comprasFornecedores', CompraFornecedorViewSet, basename='comprasFornecedores')
+router.register(r'estoque', EstoqueViewSet, basename='estoque')
+router.register(r'carinhos', CarrinhoViewSet, basename='carinhos')
+router.register(r'favoritos', FavoritoViewSet, basename='favoritos')
+router.register(r'categorias', CategoriaViewSet, basename='categorias')
+router.register(r'compras', CompraViewSet, basename='compras')
+router.register(r'continentes', ContinenteViewSet, basename='continentes')
 
 
 urlpatterns = [
