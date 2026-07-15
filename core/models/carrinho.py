@@ -1,3 +1,4 @@
+
 from django.db import models
 
 
@@ -11,5 +12,4 @@ class Carrinho(models.Model):
 
     class Meta:
         verbose_name_plural = 'Carrinhos'
-
         constraints = [models.UniqueConstraint(fields=['usuario', 'roupa'], name='unique_roupa_usuario')]

@@ -8,6 +8,13 @@ from dotenv import load_dotenv
 # Carrega as variáveis de ambiente do arquivo .env
 load_dotenv()
 
+MODE = os.getenv('MODE')
+
+if MODE == 'DEVELOPMENT':
+    print("ARQUIVO .ENV CARREGADO")
+    print("MODE =", os.getenv("MODE"))
+    print("CLOUDINARY_CLOUD_NAME =", os.getenv("CLOUDINARY_CLOUD_NAME"))
+
 # Define o modo de execução da aplicação
 MODE = os.getenv('MODE')
 
@@ -17,10 +24,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Segurança e configuração básica
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure')
 DEBUG = os.getenv('DEBUG', 'False')
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    '*',
+    'backend-atelier.class.fabricadesoftware.ifc.edu.br',
+    '.fabricadesoftware.ifc.edu.br'
+    'paginahome-mu.vercel.app',
+]
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000',
     'http://localhost:8000',
+    'https://backend-atelier.class.fabricadesoftware.ifc.edu.br',
+    'https://paginahome-mu.vercel.app'
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -39,6 +53,7 @@ INSTALLED_APPS = [
     'django_filters',
     'drf_spectacular',
     'rest_framework',
+    'uploader',
     'core',
 ]
 
@@ -148,7 +163,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',),
     'DEFAULT_PAGINATION_CLASS': 'app.pagination.CustomPagination',
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-    'PAGE_SIZE': 10,
+    'PAGE_SIZE': 12,
 }
 
 # Configurações do Simple JWT
@@ -159,4 +174,5 @@ SIMPLE_JWT = {
 }
 
 # Exibe as configurações principais para verificação
-print(f'{MODE = } \n{MEDIA_URL = } \n{DATABASES = }')
+if MODE == 'DEVELOPMENT':
+    print(f'{MODE = } \n{MEDIA_URL = } \n{DATABASES = }')
