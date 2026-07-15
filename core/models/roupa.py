@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 from uploader.models import Image
@@ -20,3 +21,25 @@ class Roupa(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class Carrinho(models.Model):
+    usuario = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+
+
+class ItemCarrinho(models.Model):
+    carrinho = models.ForeignKey(
+        Carrinho,
+        on_delete=models.CASCADE,
+        related_name="itens"
+    )
+
+    roupa = models.ForeignKey(
+        Roupa,
+        on_delete=models.CASCADE
+    )
+
+    quantidade = models.PositiveIntegerField(default=1)
