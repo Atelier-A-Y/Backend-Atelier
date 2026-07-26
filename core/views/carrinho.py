@@ -13,4 +13,15 @@ class CarrinhoViewSet(ModelViewSet):
         return Carrinho.objects.filter(usuario=self.request.user)
 
     def perform_create(self, serializer):
-        serializer.save(usuario=self.request.user)
+        roupa = serializer.validated_data['roupa']
+        quantidade = serializer.validated_data.get('quantidade', 1)
+
+        carrinho, criado = Carrinho.objects.get_or_create(
+            usuario=self.request.user,
+            roupa=roupa,
+            defaults={'quantidade': quantidade}
+        )
+
+        if not criado:
+            carrinho.quantidade += quantidade
+            carrinho.save()
