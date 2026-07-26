@@ -6,4 +6,5 @@ from core.models import Carrinho
 class CarrinhoSerializer(ModelSerializer):
     class Meta:
         model = Carrinho
-        fields = '__all__'
+        fields = ['id', 'usuario', 'roupa', 'quantidade']
+        read_only_fields = ['id', 'usuario']
