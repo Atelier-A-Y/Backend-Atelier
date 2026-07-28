@@ -4,6 +4,7 @@ from core.models import Favorito
 
 
 class FavoritoSerializer(ModelSerializer):
-     class Meta:
+    class Meta:
         model = Favorito
         fields = '__all__'
+        read_only_fields = ['usuario']
