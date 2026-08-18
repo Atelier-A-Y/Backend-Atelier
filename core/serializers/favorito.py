@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from core.serializers import RoupaRetrieveSerializer
+from core.serializers.roupa import RoupaRetrieveSerializer
 from core.models import Favorito
 
 
