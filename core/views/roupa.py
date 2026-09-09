@@ -3,7 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from core.models import Carrinho, ItemCarrinho, Roupa
+from core.models import Carrinho, Roupa
 from core.serializers.roupa import (
     RoupaCreateSerializer,
     RoupaRetrieveSerializer,
@@ -26,20 +26,23 @@ class RoupaViewSet(ModelViewSet):
     @action(detail=True, methods=["post"], permission_classes=[IsAuthenticated])
     def adicionar_carrinho(self, request, pk=None):
 
-        carrinho, _ = Carrinho.objects.get_or_create(
-            usuario=request.user
-        )
-
         roupa = self.get_object()
 
-        item, criado = ItemCarrinho.objects.get_or_create(
-            carrinho=carrinho,
+        quantidade = request.data.get("quantidade", 1)
+
+        carrinho, criado = Carrinho.objects.get_or_create(
+            usuario=request.user,
             roupa=roupa,
+            defaults={
+                "quantidade": quantidade
+            }
         )
 
         if not criado:
-            item.quantidade += request.data.get("quantidade", 1)
+            carrinho.quantidade += quantidade
+            carrinho.save()
 
-        item.save()
-
-        return Response({"mensagem": "Produto adicionado"})
+        return Response({
+            "mensagem": "Produto adicionado ao carrinho",
+            "quantidade": carrinho.quantidade
+        })
