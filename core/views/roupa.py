@@ -23,8 +23,8 @@ class RoupaViewSet(ModelViewSet):
 
         return RoupaSerializer
 
-    @action(detail=True, methods=["post"], permission_classes=[IsAuthenticated])
-    def adicionar_carrinho(self, request, pk=None):
+@action(detail=True, methods=["post"], permission_classes=[IsAuthenticated])
+def adicionar_carrinho(self, request, pk=None):
 
         roupa = self.get_object()
 

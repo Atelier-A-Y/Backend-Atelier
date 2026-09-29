@@ -12,3 +12,4 @@ class Favorito(models.Model):
 
     class Meta:
         verbose_name_plural = 'Favoritos'
+        unique_together = ('usuario', 'roupa')
