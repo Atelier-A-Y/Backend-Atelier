@@ -19,6 +19,7 @@ ALLOWED_HOSTS = [
     "backend-atelier.class.fabricadesoftware.ifc.edu.br",
     ".fabricadesoftware.ifc.edu.br",
     "paginahome-mu.vercel.app",
+
 ]
 
 CSRF_TRUSTED_ORIGINS = [

@@ -26,13 +26,23 @@ class RoupaViewSet(ModelViewSet):
 @action(detail=True, methods=["post"], permission_classes=[IsAuthenticated])
 def adicionar_carrinho(self, request, pk=None):
 
-    roupa = self.get_object()
+        roupa = self.get_object()
 
-    carrinho, _ = Carrinho.objects.get_or_create(
-        usuario=request.user
-    )
+        quantidade = request.data.get("quantidade", 1)
 
-    carrinho.roupa = roupa
-    carrinho.save()
+        carrinho, criado = Carrinho.objects.get_or_create(
+            usuario=request.user,
+            roupa=roupa,
+            defaults={
+                "quantidade": quantidade
+            }
+        )
 
-    return Response({"mensagem": "Produto adicionado"})
+        if not criado:
+            carrinho.quantidade += quantidade
+            carrinho.save()
+
+        return Response({
+            "mensagem": "Produto adicionado ao carrinho",
+            "quantidade": carrinho.quantidade
+        })
