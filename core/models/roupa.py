@@ -14,7 +14,7 @@ class Roupa(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, blank=True, null=True)
     tamanho = models.ForeignKey('Tamanho', on_delete=models.SET_NULL, blank=True, null=True)
     cor = models.CharField(max_length=30)
-    cor_hex = models.CharField(max_length=7)
+    cor_hex = models.CharField(max_length=15)
     foto = models.ForeignKey(
         Image,
         related_name='+',
