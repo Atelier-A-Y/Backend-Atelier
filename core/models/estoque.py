@@ -10,7 +10,6 @@ class Estoque(models.Model):
 
 
 class MovimentacaoEstoque(models.Model):
-
     class Tipo(models.TextChoices):
         ENTRADA = 'E', 'Entrada'
         SAIDA = 'S', 'Saída'

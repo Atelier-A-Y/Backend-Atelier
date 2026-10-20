@@ -7,7 +7,9 @@ class Venda(models.Model):
     usuario = models.ForeignKey('User', on_delete=models.PROTECT, related_name='vendas', null=True, blank=True)
     preco_total = models.DecimalField(max_digits=10, decimal_places=2)
     data_venda = models.DateTimeField(auto_now_add=True)
-    tipo_pagamento = models.ForeignKey(TipoPagamento, on_delete=models.SET_NULL, null=True, blank=True, related_name='vendas')
+    tipo_pagamento = models.ForeignKey(
+        TipoPagamento, on_delete=models.SET_NULL, null=True, blank=True, related_name='vendas'
+    )
 
     def __str__(self):
         return f'Venda #{self.id}'

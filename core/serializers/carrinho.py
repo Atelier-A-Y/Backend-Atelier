@@ -5,18 +5,11 @@ from core.serializers.roupa import RoupaRetrieveSerializer
 
 
 class CarrinhoSerializer(serializers.ModelSerializer):
-    roupa_detalhes = RoupaRetrieveSerializer(
-        source='roupa',
-        read_only=True
-    )
+    roupa_detalhes = RoupaRetrieveSerializer(source='roupa', read_only=True)
 
-    roupa = serializers.PrimaryKeyRelatedField(
-        queryset=Roupa.objects.all()
-    )
+    roupa = serializers.PrimaryKeyRelatedField(queryset=Roupa.objects.all())
 
-    usuario = serializers.PrimaryKeyRelatedField(
-        read_only=True
-    )
+    usuario = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
         model = Carrinho

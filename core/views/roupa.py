@@ -1,6 +1,7 @@
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.filters import SearchFilter
 from rest_framework.viewsets import ModelViewSet
 
 from core.models import Carrinho, Roupa
@@ -14,6 +15,9 @@ from core.serializers.roupa import (
 class RoupaViewSet(ModelViewSet):
     queryset = Roupa.objects.all()
 
+    filter_backends = [SearchFilter]
+    search_fields = ['nome', 'descricao', 'cor']
+
     def get_serializer_class(self):
         if self.action in {'retrieve', 'list'}:
             return RoupaRetrieveSerializer
@@ -23,27 +27,18 @@ class RoupaViewSet(ModelViewSet):
 
         return RoupaSerializer
 
+    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
+    def adicionar_carrinho(self, request, pk=None):
+        roupa = self.get_object()
 
-@action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
-def adicionar_carrinho(self, request, pk=None):
+        quantidade = int(request.data.get('quantidade', 1))
 
-    roupa = self.get_object()
-
-    quantidade = request.data.get("quantidade", 1)
-
-    carrinho, criado = Carrinho.objects.get_or_create(
-            usuario=request.user,
-            roupa=roupa,
-            defaults={
-                "quantidade": quantidade
-            }
+        carrinho, criado = Carrinho.objects.get_or_create(
+            usuario=request.user, roupa=roupa, defaults={'quantidade': quantidade}
         )
 
-    if not criado:
-        carrinho.quantidade += quantidade
-        carrinho.save()
+        if not criado:
+            carrinho.quantidade += quantidade
+            carrinho.save()
 
-        return Response({
-            "mensagem": "Produto adicionado ao carrinho",
-            "quantidade": carrinho.quantidade
-        })
+        return Response({'mensagem': 'Produto adicionado ao carrinho', 'quantidade': carrinho.quantidade})

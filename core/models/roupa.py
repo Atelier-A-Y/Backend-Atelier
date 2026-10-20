@@ -2,7 +2,6 @@ from django.db import models
 
 from uploader.models import Image
 
-from .categoria import Categoria
 from .continente import Continente
 
 
@@ -11,7 +10,7 @@ class Roupa(models.Model):
     preco = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     descricao = models.TextField(blank=True, null=True)
     continente = models.ForeignKey(Continente, on_delete=models.SET_NULL, blank=True, null=True)
-    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, blank=True, null=True)
+    categoria = models.ManyToManyField,
     tamanho = models.ForeignKey('Tamanho', on_delete=models.SET_NULL, blank=True, null=True)
     cor = models.CharField(max_length=30)
     cor_hex = models.CharField(max_length=15)

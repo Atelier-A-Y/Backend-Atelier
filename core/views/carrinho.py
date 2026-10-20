@@ -17,9 +17,7 @@ class CarrinhoViewSet(ModelViewSet):
         quantidade = serializer.validated_data.get('quantidade', 1)
 
         carrinho, criado = Carrinho.objects.get_or_create(
-            usuario=self.request.user,
-            roupa=roupa,
-            defaults={'quantidade': quantidade}
+            usuario=self.request.user, roupa=roupa, defaults={'quantidade': quantidade}
         )
 
         if not criado:

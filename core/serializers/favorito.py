@@ -4,14 +4,12 @@ from core.models import Favorito, Roupa
 
 
 class FavoritoSerializer(ModelSerializer):
-    roupa = PrimaryKeyRelatedField(
-        queryset=Roupa.objects.all()
-    )
+    roupa = PrimaryKeyRelatedField(queryset=Roupa.objects.all())
 
     class Meta:
         model = Favorito
-        fields = "__all__"
-        read_only_fields = ["usuario"]
+        fields = '__all__'
+        read_only_fields = ['usuario']
 
 
 class FavoritoRetrieveSerializer(ModelSerializer):
@@ -19,4 +17,4 @@ class FavoritoRetrieveSerializer(ModelSerializer):
 
     class Meta:
         model = Favorito
-        fields = "__all__"
+        fields = '__all__'
