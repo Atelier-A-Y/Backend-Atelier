@@ -19,7 +19,6 @@ from core.views import (
     CategoriaViewSet,
     CompraFornecedorViewSet,
     CompraViewSet,
-    ContinenteViewSet,
     EstoqueViewSet,
     FavoritoViewSet,
     FornecedorViewSet,
@@ -46,7 +45,6 @@ router.register(r'carrinho', CarrinhoViewSet, basename='carrinho')
 router.register(r'favoritos', FavoritoViewSet, basename='favoritos')
 router.register(r'categorias', CategoriaViewSet, basename='categorias')
 router.register(r'compras', CompraViewSet, basename='compras')
-router.register(r'continentes', ContinenteViewSet, basename='continentes')
 
 
 urlpatterns = [

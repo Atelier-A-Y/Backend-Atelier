@@ -3,7 +3,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.filters import SearchFilter
 from rest_framework.viewsets import ModelViewSet
-
 from core.models import Carrinho, Roupa
 from core.serializers.roupa import (
     RoupaCreateSerializer,
