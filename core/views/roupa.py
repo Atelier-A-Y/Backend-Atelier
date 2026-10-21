@@ -1,9 +1,10 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
+from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.viewsets import ModelViewSet
+
 from core.models import Carrinho, Roupa
 from core.serializers.roupa import (
     RoupaCreateSerializer,
@@ -16,10 +17,10 @@ class RoupaViewSet(ModelViewSet):
     queryset = Roupa.objects.all()
 
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ['categoria__descricao', 'editora__nome']
-    search_fields = ['titulo']
-    ordering_fields = ['titulo', 'preco']
-    ordering = ['titulo']
+    filterset_fields = ['categoria__nome', 'cor', 'descricao']
+    search_fields = ['nome']
+    ordering_fields = ['nome', 'preco']
+    ordering = ['nome']
 
     def get_serializer_class(self):
         if self.action in {'retrieve', 'list'}:
