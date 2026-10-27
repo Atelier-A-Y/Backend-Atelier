@@ -8,7 +8,7 @@ class Roupa(models.Model):
     nome = models.CharField(max_length=100)
     preco = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     descricao = models.TextField(blank=True, null=True)
-    categoria = models.ManyToManyField(Categoria, related_name='roupas', blank=True, null=True)
+    categoria = models.ManyToManyField(Categoria, related_name='roupas', blank=True)
     tamanho = models.ForeignKey('Tamanho', on_delete=models.SET_NULL, blank=True, null=True)
     cor = models.CharField(max_length=30)
     cor_hex = models.CharField(max_length=15)
