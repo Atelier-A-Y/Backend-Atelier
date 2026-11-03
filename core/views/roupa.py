@@ -17,10 +17,28 @@ class RoupaViewSet(ModelViewSet):
     queryset = Roupa.objects.all()
 
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+
     filterset_fields = ['categoria__nome', 'cor', 'descricao']
-    search_fields = ['nome']
+
+    search_fields = ['nome', 'descricao', 'cor', 'categoria__nome']
+
     ordering_fields = ['nome', 'preco']
     ordering = ['nome']
+
+    def get_queryset(self):
+        queryset = Roupa.objects.all()
+
+        # Filtro por múltiplas categorias
+        categorias = self.request.query_params.get('categorias')
+
+        if categorias:
+            ids_categorias = categorias.split(',')
+
+            queryset = queryset.filter(
+                categoria__id__in=ids_categorias
+            ).distinct()
+
+        return queryset
 
     def get_serializer_class(self):
         if self.action in {'retrieve', 'list'}:
@@ -38,11 +56,16 @@ class RoupaViewSet(ModelViewSet):
         quantidade = int(request.data.get('quantidade', 1))
 
         carrinho, criado = Carrinho.objects.get_or_create(
-            usuario=request.user, roupa=roupa, defaults={'quantidade': quantidade}
+            usuario=request.user,
+            roupa=roupa,
+            defaults={'quantidade': quantidade}
         )
 
         if not criado:
             carrinho.quantidade += quantidade
             carrinho.save()
 
-        return Response({'mensagem': 'Produto adicionado ao carrinho', 'quantidade': carrinho.quantidade})
+        return Response({
+            'mensagem': 'Produto adicionado ao carrinho',
+            'quantidade': carrinho.quantidade
+        })
