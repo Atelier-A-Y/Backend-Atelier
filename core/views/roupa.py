@@ -28,17 +28,20 @@ class RoupaViewSet(ModelViewSet):
     def get_queryset(self):
         queryset = Roupa.objects.all()
 
-        # Filtro por múltiplas categorias
+        # Filtro por múltiplas categorias exigindo que pertença a TODAS (Lógica E / AND)
         categorias = self.request.query_params.get('categorias')
 
         if categorias:
-            ids_categorias = categorias.split(',')
+            ids_categorias = [c.strip() for c in categorias.split(',') if c.strip()]
 
-            queryset = queryset.filter(
-                categoria__id__in=ids_categorias
-            ).distinct()
+            # Encadeia um .filter() para cada ID dentro do loop
+            for cat_id in ids_categorias:
+                queryset = queryset.filter(categoria__id=cat_id)
 
-        return queryset
+            # O distinct fica fora do loop para ser aplicado no resultado final
+            queryset = queryset.distinct()
+
+        return queryset  # Retorna o queryset correto (filtrado ou completo)
 
     def get_serializer_class(self):
         if self.action in {'retrieve', 'list'}:
