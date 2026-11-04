@@ -2,11 +2,6 @@ from .user import User
 from .roupa import Roupa
 from .categoria import Categoria
 from .compra import Compra
-from .venda import Venda
 from .tamanho import Tamanho
-from .tipoPagamento import TipoPagamento 
-from .statusEntrega import StatusEntrega
-from .fornecedor import Fornecedor, CompraFornecedor, ItemCompraFornecedor
-from .estoque import Estoque, MovimentacaoEstoque
 from .carrinho import Carrinho
 from .favorito import Favorito

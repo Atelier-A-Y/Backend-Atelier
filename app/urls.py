@@ -17,17 +17,12 @@ from rest_framework_simplejwt.views import (
 from core.views import (
     CarrinhoViewSet,
     CategoriaViewSet,
-    CompraFornecedorViewSet,
     CompraViewSet,
-    EstoqueViewSet,
     FavoritoViewSet,
-    FornecedorViewSet,
     RoupaViewSet,
     TamanhoViewSet,
-    TipoPagamentoViewSet,
     UserRegistrationView,
     UserViewSet,
-    VendaViewSet,
 )
 from uploader.router import router as uploader_router
 
@@ -36,11 +31,6 @@ router = DefaultRouter()
 router.register(r'usuarios', UserViewSet, basename='usuarios')
 router.register(r'roupas', RoupaViewSet, basename='roupas')
 router.register(r'tamanhos', TamanhoViewSet, basename='tamanhos')
-router.register(r'tipoPagamento', TipoPagamentoViewSet, basename='tipoPagamento')
-router.register(r'vendas', VendaViewSet, basename='vendas')
-router.register(r'fornecedores', FornecedorViewSet, basename='fornecedores')
-router.register(r'comprasFornecedores', CompraFornecedorViewSet, basename='comprasFornecedores')
-router.register(r'estoque', EstoqueViewSet, basename='estoque')
 router.register(r'carrinho', CarrinhoViewSet, basename='carrinho')
 router.register(r'favoritos', FavoritoViewSet, basename='favoritos')
 router.register(r'categorias', CategoriaViewSet, basename='categorias')
