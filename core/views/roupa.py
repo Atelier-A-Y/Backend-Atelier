@@ -18,7 +18,11 @@ class RoupaViewSet(ModelViewSet):
 
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
 
-    filterset_fields = ['categoria__nome', 'cor', 'descricao']
+    filterset_fields = {
+    'categoria__nome': ['exact', 'iexact'],
+    'cor': ['exact', 'iexact'],
+    'descricao': ['exact', 'icontains'],
+}
 
     search_fields = ['nome', 'descricao', 'cor', 'categoria__nome']
 
