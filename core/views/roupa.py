@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter, SearchFilter
@@ -19,10 +20,10 @@ class RoupaViewSet(ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
 
     filterset_fields = {
-    'categoria__nome': ['exact', 'iexact'],
-    'cor': ['exact', 'iexact'],
-    'descricao': ['exact', 'icontains'],
-}
+        'categoria__nome': ['exact', 'iexact'],
+        'cor': ['exact', 'iexact'],
+        'descricao': ['exact', 'icontains'],
+    }
 
     search_fields = ['nome', 'descricao', 'cor', 'categoria__nome']
 
@@ -32,20 +33,19 @@ class RoupaViewSet(ModelViewSet):
     def get_queryset(self):
         queryset = Roupa.objects.all()
 
-        # Filtro por múltiplas categorias exigindo que pertença a TODAS (Lógica E / AND)
         categorias = self.request.query_params.get('categorias')
 
         if categorias:
-            ids_categorias = [c.strip() for c in categorias.split(',') if c.strip()]
+            nomes_categorias = [c.strip() for c in categorias.split(',') if c.strip()]
 
-            # Encadeia um .filter() para cada ID dentro do loop
-            for cat_id in ids_categorias:
-                queryset = queryset.filter(categoria__id=cat_id)
+            filtro = Q()
 
-            # O distinct fica fora do loop para ser aplicado no resultado final
-            queryset = queryset.distinct()
+        for categoria in nomes_categorias:
+            filtro |= Q(categoria__nome__iexact=categoria)
 
-        return queryset  # Retorna o queryset correto (filtrado ou completo)
+            queryset = queryset.filter(filtro).distinct()
+
+        return queryset
 
     def get_serializer_class(self):
         if self.action in {'retrieve', 'list'}:
@@ -63,16 +63,11 @@ class RoupaViewSet(ModelViewSet):
         quantidade = int(request.data.get('quantidade', 1))
 
         carrinho, criado = Carrinho.objects.get_or_create(
-            usuario=request.user,
-            roupa=roupa,
-            defaults={'quantidade': quantidade}
+            usuario=request.user, roupa=roupa, defaults={'quantidade': quantidade}
         )
 
         if not criado:
             carrinho.quantidade += quantidade
             carrinho.save()
 
-        return Response({
-            'mensagem': 'Produto adicionado ao carrinho',
-            'quantidade': carrinho.quantidade
-        })
+        return Response({'mensagem': 'Produto adicionado ao carrinho', 'quantidade': carrinho.quantidade})

@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
-from core.serializers.roupa import RoupaRetrieveSerializer
+
 from core.models import Favorito, Roupa
+from core.serializers.roupa import RoupaRetrieveSerializer
 
 
 class FavoritoSerializer(ModelSerializer):
