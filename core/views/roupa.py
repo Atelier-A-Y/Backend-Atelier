@@ -33,6 +33,8 @@ class RoupaViewSet(ModelViewSet):
     def get_queryset(self):
         queryset = Roupa.objects.all()
 
+        nomes_categorias = []
+
         categorias = self.request.query_params.get('categorias')
 
         if categorias:
@@ -42,8 +44,8 @@ class RoupaViewSet(ModelViewSet):
                 if c.strip()
             ]
 
-            if nomes_categorias:
-                filtro = Q()
+        if nomes_categorias:
+            filtro = Q()
 
             for categoria in nomes_categorias:
                 filtro |= Q(categoria__nome__iexact=categoria)
