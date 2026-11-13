@@ -37,15 +37,18 @@ class RoupaViewSet(ModelViewSet):
 
         if categorias:
             nomes_categorias = [
-                c.strip() for c in categorias.split(',') if c.strip()
+                c.strip()
+                for c in categorias.split(',')
+                if c.strip()
             ]
 
-        filtro = Q()
+            if nomes_categorias:
+                filtro = Q()
 
-        for categoria in nomes_categorias:
-            filtro |= Q(categoria__nome__iexact=categoria)
+            for categoria in nomes_categorias:
+                filtro |= Q(categoria__nome__iexact=categoria)
 
-        queryset = queryset.filter(filtro).distinct()
+            queryset = queryset.filter(filtro).distinct()
 
         return queryset
 
