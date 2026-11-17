@@ -5,10 +5,17 @@ from core.models import User
 
 
 class UserSerializer(ModelSerializer):
+    foto_perfil = serializers.SerializerMethodField()
+
     class Meta:
         model = User
-        fields = ['id', 'email', 'name', 'telefone', 'cpf']
+        fields = ['id', 'email', 'name', 'telefone', 'cpf', 'foto_perfil']
         depth = 1
+
+    def get_foto_perfil(self, obj):
+        if obj.foto_perfil:
+            return obj.foto_perfil.url
+        return None
 
 
 class UserRegistrationSerializer(ModelSerializer):
