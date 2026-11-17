@@ -17,6 +17,8 @@ class Compra(models.Model):
         blank=True
     )
 
+    status = models.CharField(max_length=50, default='Pedido a caminho')
+
     def __str__(self):
         return f'Compra - {self.id}'
 
