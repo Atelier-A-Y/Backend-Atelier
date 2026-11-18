@@ -5,6 +5,7 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from uploader.models import Image
 
 from core.models import User
 from core.serializers import UserRegistrationSerializer, UserSerializer
@@ -34,6 +35,36 @@ class UserViewSet(ModelViewSet):
         user.save()
 
         return Response({'message': 'Senha alterada com sucesso'})
+
+    @action(
+    detail=False,
+    methods=['patch'],
+    url_path='foto-perfil',
+    permission_classes=[IsAuthenticated]
+)
+    def foto_perfil(self, request):
+        attachment_key = request.data.get('attachment_key')
+
+        if not attachment_key:
+            return Response(
+                {'error': 'Nenhuma imagem foi informada.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        try:
+            imagem = Image.objects.get(attachment_key=attachment_key)
+        except Image.DoesNotExist:
+            return Response(
+                {'error': 'Imagem não encontrada.'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        request.user.foto_perfil = imagem
+        request.user.save()
+
+        return Response(
+            UserSerializer(request.user).data,
+            status=status.HTTP_200_OK)
 
     @action(detail=False, methods=['get', 'patch'], permission_classes=[IsAuthenticated])
     def me(self, request):
