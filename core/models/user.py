@@ -39,6 +39,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True, verbose_name=_('email'), help_text=_('Email'))
     name = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('name'), help_text=_('Username'))
     telefone = models.CharField(max_length=20, blank=True, null=True, verbose_name=_('telefone'))
+    data_nascimento = models.DateField(
+    blank=True,
+    null=True,
+    verbose_name=_('Data de nascimento')
+    )
     cpf = models.CharField(max_length=14, unique=True, blank=True, null=True, verbose_name=_('cpf'), help_text=_('CPF'))
     foto_perfil = models.ForeignKey(
     Image,

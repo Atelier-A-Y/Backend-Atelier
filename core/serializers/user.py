@@ -9,7 +9,7 @@ class UserSerializer(ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'email', 'name', 'telefone', 'cpf', 'foto_perfil']
+        fields = ['id', 'email', 'name', 'telefone', 'cpf', 'foto_perfil', 'data_nascimento']
         depth = 1
 
     def get_foto_perfil(self, obj):
